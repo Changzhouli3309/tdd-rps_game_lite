@@ -4,7 +4,6 @@ import model.Round;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import sevice.GameProgress;
-import util.InputChecker;
 import util.RandomMove;
 import util.UserInput;
 
@@ -25,21 +24,20 @@ public class RpsGameTest {
         randomMove = mock(RandomMove.class);
 
         GameProgress gp = new GameProgress(randomMove);
-        InputChecker ic = new InputChecker();
 
-        rpsGame= new RpsGame(userInput, gp, ic);
+        rpsGame= new RpsGame(userInput, gp);
     }
 
     @Test
     void createGame_test(){
 
-        when(userInput.getInput()).thenReturn("2");
+        when(userInput.getInt()).thenReturn(2);
 
         Game game = rpsGame.createGame();
 
         assertEquals(2, game.getScoreLimit());
 
-        when(userInput.getInput()).thenReturn("ROCK");
+        when(userInput.getInputFromList("ROCK", "PAPER", "SCISSORS")).thenReturn("ROCK");
         when(randomMove.getRandomAiMove()).thenReturn("ROCK");
 
         game = rpsGame.makeMove(game);
@@ -54,7 +52,7 @@ public class RpsGameTest {
     @Test
     void makeMove_test(){
 
-        when(userInput.getInput()).thenReturn("ROCK");
+        when(userInput.getInputFromList("ROCK", "PAPER", "SCISSORS")).thenReturn("ROCK");
         when(randomMove.getRandomAiMove()).thenReturn("ROCK");
 
         Game game = new Game(3);
@@ -71,11 +69,11 @@ public class RpsGameTest {
     @Test
     void getResult_test(){
 
-        when(userInput.getInput()).thenReturn("1");
+        when(userInput.getInt()).thenReturn(1);
 
         Game game = rpsGame.createGame();
 
-        when(userInput.getInput()).thenReturn("ROCK");
+        when(userInput.getInputFromList("ROCK", "PAPER", "SCISSORS")).thenReturn("ROCK");
         when(randomMove.getRandomAiMove()).thenReturn("SCISSORS");
 
         game = rpsGame.makeMove(game);

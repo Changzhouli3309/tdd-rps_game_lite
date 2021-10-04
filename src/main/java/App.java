@@ -1,7 +1,6 @@
 import controller.RpsGame;
 import model.Game;
 import sevice.GameProgress;
-import util.InputChecker;
 import util.RandomMove;
 import util.UserInput;
 
@@ -10,8 +9,7 @@ public class App {
     public static void main(String [] arg){
 
         RpsGame rpsGame = new RpsGame(new UserInput(),
-                new GameProgress(new RandomMove()),
-                new InputChecker());
+                new GameProgress(new RandomMove()));
 
         Game game = rpsGame.createGame();
 
