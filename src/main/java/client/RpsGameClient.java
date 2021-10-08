@@ -1,4 +1,4 @@
-package clent;
+package client;
 
 import model.Game;
 import model.Round;
@@ -7,11 +7,11 @@ import util.UserInput;
 
 import java.util.List;
 
-public class RpsGameClent {
+public class RpsGameClient {
     private final UserInput userInput;
     private final GameService gameService;
 
-    public RpsGameClent(UserInput userInput, GameService gameService) {
+    public RpsGameClient(UserInput userInput, GameService gameService) {
         this.userInput = userInput;
         this.gameService = gameService;
     }
@@ -40,10 +40,10 @@ public class RpsGameClent {
         game.setRounds(rounds);
         game = gameService.updateScore(game);
 
-        System.out.println("Round " + rounds.size() + " Player: " + playerMove + " CPU: " + aiMove);
+        System.out.println("Round " + rounds.size() + "\nPlayer: " + playerMove + " CPU: " + aiMove);
         System.out.println(result.equals("DRAW") ? "It is a draw." : "You " + result + " this round.");
-        System.out.println("Player Stats: win: " + game.getWin() + " lose: " + game.getLose()
-                + " score limit: " + game.getScoreLimit());
+        System.out.println("Player Stats: win: " + game.getWin() + "/" + game.getScoreLimit()
+                + " lose: " + game.getLose() + "/" + game.getScoreLimit());
     }
 
     public boolean isGameEnd(Game game) {

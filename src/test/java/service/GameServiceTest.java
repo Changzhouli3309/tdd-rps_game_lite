@@ -29,10 +29,11 @@ class GameServiceTest {
 
     @Test
     void getRandomAiMove_test() {
-
+        // Given
         when(randomMove.getRandomAiMove()).thenReturn("ROCK");
-
+        // When
         String move = gameService.getRandomAiMove();
+        // Then
         assertEquals("ROCK", move);
     }
 

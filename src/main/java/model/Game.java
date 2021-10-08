@@ -7,7 +7,9 @@ import java.util.List;
 
 @Data
 public class Game {
-    private int scoreLimit, win, lose;
+    private int scoreLimit;
+    private int win;
+    private int lose;
     private String result;
     private List<Round> rounds;
 

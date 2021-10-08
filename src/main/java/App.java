@@ -1,4 +1,4 @@
-import clent.RpsGameClent;
+import client.RpsGameClient;
 import model.Game;
 import sevice.GameService;
 import util.RandomMove;
@@ -7,13 +7,13 @@ import util.UserInput;
 public class App {
 
     public static void main(String [] arg){
-        //rename class to GameClient?
-        RpsGameClent rpsGameClent = new RpsGameClent(new UserInput(), new GameService(new RandomMove()));
 
-        Game game = rpsGameClent.createGame();
+        RpsGameClient rpsGameClient = new RpsGameClient(new UserInput(), new GameService(new RandomMove()));
 
-        while (!rpsGameClent.isGameEnd(game)){//rename to checkIsGameEnd
-            rpsGameClent.makeMove(game);
+        Game game = rpsGameClient.createGame();
+
+        while (!rpsGameClient.isGameEnd(game)){
+            rpsGameClient.makeMove(game);
         }
 
     }
