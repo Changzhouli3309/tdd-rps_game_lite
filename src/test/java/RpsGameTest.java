@@ -36,17 +36,7 @@ public class RpsGameTest {
         Game game = rpsGame.createGame();
 
         assertEquals(2, game.getScoreLimit());
-
-        when(userInput.getInputFromList("ROCK", "PAPER", "SCISSORS")).thenReturn("ROCK");
-        when(randomMove.getRandomAiMove()).thenReturn("ROCK");
-
-        game = rpsGame.makeMove(game);
-
-        Round actual = game.getRounds().get(0);
-
-        assertEquals("ROCK",actual.getPlayerMove());
-        assertEquals("ROCK",actual.getAiMove());
-        assertEquals("DRAW" , actual.getResult());
+        
     }
 
     @Test

@@ -1,8 +1,5 @@
 package model;
 
-import lombok.Data;
-
-@Data
 public class Round {
     private String playerMove, aiMove, result;
 
