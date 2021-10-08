@@ -6,12 +6,12 @@ import util.RandomMove;
 
 import java.util.List;
 
-public class GameProgress {
+public class GameService {
     private final String[] moves;
     private final String[] results;
     private final RandomMove randomMove;
 
-    public GameProgress(RandomMove randomMove) {
+    public GameService(RandomMove randomMove) {
         this.moves = new String[]{"ROCK", "PAPER", "SCISSORS"};
         this.results = new String[]{"DRAW", "WIN", "LOSE"};
         this.randomMove = randomMove;
@@ -23,10 +23,8 @@ public class GameProgress {
 
     public String getRoundRes(String playerMove, String aiMove) {
         int res = getMoveNumber(playerMove) - getMoveNumber(aiMove);
-        if (res < 0) {
-            res += 3;
-        }
-        return results[res];
+
+        return res < 0 ? results[res + 3] : results[res];
     }
 
     public int getMoveNumber(String move) {
