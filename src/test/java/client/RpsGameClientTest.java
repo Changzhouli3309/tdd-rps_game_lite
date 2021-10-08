@@ -34,7 +34,7 @@ public class RpsGameClientTest {
     @Test
     void createGame_test() {
         // Given
-        when(userInput.getInt()).thenReturn(2);
+        when(userInput.getInt()).thenReturn(0,2);
 
         // When
         Game game = rpsGameClient.createGame();

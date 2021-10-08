@@ -34,6 +34,15 @@ public class GameService {
         throw new IllegalArgumentException("Illegal move");
     }
 
+    public Game addRoundToList(Game game, Round round){
+        game.getRounds().add(round);
+        return game;
+    }
+
+    public int getListSize(Game game){
+        return game.getRounds().size();
+    }
+
     public Game updateScore(Game game) {
         List<Round> rounds = game.getRounds();
         int win = 0, lose = 0;

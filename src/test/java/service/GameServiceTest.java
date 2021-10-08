@@ -32,9 +32,9 @@ class GameServiceTest {
         // Given
         when(randomMove.getRandomAiMove()).thenReturn("ROCK");
         // When
-        String move = gameService.getRandomAiMove();
+        String actual = gameService.getRandomAiMove();
         // Then
-        assertEquals("ROCK", move);
+        assertEquals("ROCK", actual);
     }
 
     @ParameterizedTest
@@ -82,9 +82,9 @@ class GameServiceTest {
     @Test
     void updateScore_test() {
         Game actual = new Game(3);
-        actual.getRounds().add(new Round("ROCK", "SCISSORS", "WIN"));
-        actual.getRounds().add(new Round("ROCK", "SCISSORS", "WIN"));
-        actual.getRounds().add(new Round("SCISSORS", "ROCK", "LOSE"));
+        gameService.addRoundToList(actual,new Round("ROCK", "SCISSORS", "WIN"));
+        gameService.addRoundToList(actual,new Round("ROCK", "SCISSORS", "WIN"));
+        gameService.addRoundToList(actual,new Round("SCISSORS", "ROCK", "LOSE"));
 
         actual = gameService.updateScore(actual);
 
@@ -95,9 +95,9 @@ class GameServiceTest {
     @Test
     void isGameEnd_false_test() {
         Game actual = new Game(3);
-        actual.getRounds().add(new Round("ROCK", "SCISSORS", "WIN"));
-        actual.getRounds().add(new Round("ROCK", "SCISSORS", "WIN"));
-        actual.getRounds().add(new Round("SCISSORS", "ROCK", "LOSE"));
+        gameService.addRoundToList(actual,new Round("ROCK", "SCISSORS", "WIN"));
+        gameService.addRoundToList(actual,new Round("ROCK", "SCISSORS", "WIN"));
+        gameService.addRoundToList(actual,new Round("SCISSORS", "ROCK", "LOSE"));
 
         actual = gameService.updateScore(actual);
 
@@ -107,8 +107,8 @@ class GameServiceTest {
     @Test
     void isGameEnd_true_test() {
         Game actual = new Game(2);
-        actual.getRounds().add(new Round("ROCK", "SCISSORS", "WIN"));
-        actual.getRounds().add(new Round("ROCK", "SCISSORS", "WIN"));
+        gameService.addRoundToList(actual,new Round("ROCK", "SCISSORS", "WIN"));
+        gameService.addRoundToList(actual,new Round("ROCK", "SCISSORS", "WIN"));
         actual = gameService.updateScore(actual);
 
         assertTrue(gameService.isGameEnd(actual));
@@ -117,7 +117,7 @@ class GameServiceTest {
     @Test
     void getGameRes_win_test() {
         Game actual = new Game(1);
-        actual.getRounds().add(new Round("ROCK", "SCISSORS", "WIN"));
+        gameService.addRoundToList(actual,new Round("ROCK", "SCISSORS", "WIN"));
         actual = gameService.updateScore(actual);
         actual = gameService.getGameRes(actual);
 
@@ -128,7 +128,7 @@ class GameServiceTest {
     @Test
     void getGameRes_loss_test() {
         Game actual = new Game(1);
-        actual.getRounds().add(new Round("SCISSORS", "ROCK", "LOSE"));
+        gameService.addRoundToList(actual,new Round("SCISSORS", "ROCK", "LOSE"));
         actual = gameService.updateScore(actual);
         actual = gameService.getGameRes(actual);
 

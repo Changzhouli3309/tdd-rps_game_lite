@@ -5,8 +5,6 @@ import model.Round;
 import sevice.GameService;
 import util.UserInput;
 
-import java.util.List;
-
 public class RpsGameClient {
     private final UserInput userInput;
     private final GameService gameService;
@@ -35,12 +33,11 @@ public class RpsGameClient {
         String result = gameService.getRoundRes(playerMove, aiMove);
         Round round = new Round(playerMove, aiMove, result);
 
-        List<Round> rounds = game.getRounds();
-        rounds.add(round);
-        game.setRounds(rounds);
+        game = gameService.addRoundToList(game, round);
         game = gameService.updateScore(game);
 
-        System.out.println("Round " + rounds.size() + "\nPlayer: " + playerMove + " CPU: " + aiMove);
+        System.out.println("Round " + gameService.getListSize(game)
+                + "\nPlayer: " + playerMove + " CPU: " + aiMove);
         System.out.println(result.equals("DRAW") ? "It is a draw." : "You " + result + " this round.");
         System.out.println("Player Stats: win: " + game.getWin() + "/" + game.getScoreLimit()
                 + " lose: " + game.getLose() + "/" + game.getScoreLimit());
